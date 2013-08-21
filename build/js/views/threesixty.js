@@ -18,7 +18,7 @@
     endFrame: 0,
     loadedImages: 0,
     areImagesLoaded: false,
-    animationSpeed: 1000,
+    animationSpeed: 200,
     isPaused: false,
     images: [],
     events: {
@@ -69,6 +69,7 @@
       window.clearInterval(this.ticker);
       this.ticker = 0;
       this.loadedImages = 0;
+      $("#current-coordinates").html("");
       return this.refresh();
     },
     onPause: function() {
@@ -316,7 +317,7 @@
       this.recentFrame = this.currentFrame;
       this.currentImage = this.images.at(this.recentFrame);
       url = $('.current-image').attr('src');
-      $("#current-coordinates").html("URL: " + url + "<br>Frame: " + this.recentFrame + "<br>heading: " + this.currentImage.attributes.directionalDegrees + "<br>cid: " + this.currentImage.cid + ", Coords: " + this.currentImage.attributes.coords.lat + "," + this.currentImage.attributes.coords.lng);
+      $("#current-coordinates").append("'" + url + "',");
       return $("#degrees").val(this.currentImage.attributes.directionalDegrees);
     },
     /*

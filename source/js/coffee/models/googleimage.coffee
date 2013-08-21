@@ -9,7 +9,13 @@ class window.GoogleImage extends Backbone.Model
     url: ''
     directionalDegrees: ''
     coords: {}
+    hardUrl: undefined
 
   url: ->
-    "http://maps.googleapis.com/maps/api/streetview?gid=#{@cid}&size=400x400&location=" + @attributes.coords.lat + "," + @attributes.coords.lng + "&heading=" + @attributes.directionalDegrees + "&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU"
+    if @attributes.hardUrl?
+      console.log 'showing hardURL'
+      return @attributes.hardUrl
+    else
+      console.log 'showing REGULAR'
+      return "http://maps.googleapis.com/maps/api/streetview?gid=#{@cid}&size=640x640&location=" + @attributes.coords.lat + "," + @attributes.coords.lng + "&heading=" + @attributes.directionalDegrees + "&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU"
 

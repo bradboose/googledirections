@@ -14,11 +14,18 @@
     GoogleImage.prototype.defaults = {
       url: '',
       directionalDegrees: '',
-      coords: {}
+      coords: {},
+      hardUrl: void 0
     };
 
     GoogleImage.prototype.url = function() {
-      return ("http://maps.googleapis.com/maps/api/streetview?gid=" + this.cid + "&size=400x400&location=") + this.attributes.coords.lat + "," + this.attributes.coords.lng + "&heading=" + this.attributes.directionalDegrees + "&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU";
+      if (this.attributes.hardUrl != null) {
+        console.log('showing hardURL');
+        return this.attributes.hardUrl;
+      } else {
+        console.log('showing REGULAR');
+        return ("http://maps.googleapis.com/maps/api/streetview?gid=" + this.cid + "&size=640x640&location=") + this.attributes.coords.lat + "," + this.attributes.coords.lng + "&heading=" + this.attributes.directionalDegrees + "&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU";
+      }
     };
 
     return GoogleImage;

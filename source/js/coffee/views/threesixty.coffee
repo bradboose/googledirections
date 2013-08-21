@@ -51,7 +51,7 @@ window.ThreeSixtyView = Backbone.View.extend(
 
   areImagesLoaded: false
 
-  animationSpeed: 1000
+  animationSpeed: 500
 
   # Stores whether or not the animation is paused
   isPaused: false
@@ -98,7 +98,7 @@ window.ThreeSixtyView = Backbone.View.extend(
     @currentImage = @images.at @currentFrame
     @currentImage.attributes.directionalDegrees = $("#degrees").val()
 
-    #imageURL = "http://maps.googleapis.com/maps/api/streetview?gid=#{@currentImage.cid}&size=400x400&location=" + @currentImage.attributes.coords.lat + "," + @currentImage.attributes.coords.lng + "&heading=" + $("#degrees").val() + "&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU"
+    #imageURL = "http://maps.googleapis.com/maps/api/streetview?gid=#{@currentImage.cid}&size=640x640&location=" + @currentImage.attributes.coords.lat + "," + @currentImage.attributes.coords.lng + "&heading=" + $("#degrees").val() + "&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU"
 
 
     $(".current-image").attr "src", @currentImage.url()
@@ -124,6 +124,7 @@ window.ThreeSixtyView = Backbone.View.extend(
     @loadedImages = 0
     #@loadImage()
 
+    $("#current-coordinates").html ""
     @refresh()
 
 
@@ -318,7 +319,7 @@ window.ThreeSixtyView = Backbone.View.extend(
     li = document.createElement("li")
 
     # Generates the image file name using the incremented "loadedImages" variable
-    #var imageName = "http://maps.googleapis.com/maps/api/streetview?size=400x400&location=37.77180000000001,-122.454270&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU&heading=" + ( this.loadedImages * 10 );
+    #var imageName = "http://maps.googleapis.com/maps/api/streetview?size=640x640&location=37.77180000000001,-122.454270&sensor=false&key=AIzaSyCyUdEWUkmZFkb1jmDjWi2UmZ345Rvb4sU&heading=" + ( this.loadedImages * 10 );
     imageName = (@images.at @loadedImages).url()
 
     #
@@ -483,7 +484,8 @@ window.ThreeSixtyView = Backbone.View.extend(
     @currentImage = @images.at(@recentFrame)
     url = $('.current-image').attr 'src'
 
-    $("#current-coordinates").html "URL: #{url}<br>Frame: #{@recentFrame}<br>heading: #{@currentImage.attributes.directionalDegrees}<br>cid: #{@currentImage.cid}, Coords: #{@currentImage.attributes.coords.lat},#{@currentImage.attributes.coords.lng}"
+    #$("#current-coordinates").html "URL: #{url}<br>Frame: #{@recentFrame}<br>heading: #{@currentImage.attributes.directionalDegrees}<br>cid: #{@currentImage.cid}, Coords: #{@currentImage.attributes.coords.lat},#{@currentImage.attributes.coords.lng}"
+    $("#current-coordinates").append "'#{url}',"
     $("#degrees").val @currentImage.attributes.directionalDegrees
 
 
