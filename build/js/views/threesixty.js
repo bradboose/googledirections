@@ -18,7 +18,7 @@
     endFrame: 0,
     loadedImages: 0,
     areImagesLoaded: false,
-    animationSpeed: 200,
+    animationSpeed: 500,
     isPaused: false,
     images: [],
     events: {
